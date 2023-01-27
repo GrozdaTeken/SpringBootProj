@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Upravljajte korisnicima</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+  <div><h2>Upravljaj korisnicima</h2></div>
+  <div class="m-2">
+    <a class="h3" th:href="@{/users/new}">Dodaj novog korisnika</a>
+  </div>
+  <div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+  </div>
+  <div>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="korisnik : ${prikaziListuKorisnika}">
+        <tr>
+          <td>[[${korisnik.id}]]</td>
+          <td>[[${korisnik.ime}]]</td>
+          <td>[[${korisnik.prezime}]]</td>
+          <td>[[${korisnik.email}]]</td>
+          <td>
+            <a class="h4 mr-3" th:href="@{'/users/edit/' + ${korisnik.id}}">Izmeni</a>
+            <a class="h4" th:href="@{'/users/delete/' + ${korisnik.id}}">Obrisi</a>
+          </td>
+        </tr>
+      </th:block>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
